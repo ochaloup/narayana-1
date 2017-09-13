@@ -22,6 +22,8 @@ RUN mkdir -p ${NARAYANA_HOME}/ObjectStore/ShadowNoFileLockStore/defaultStore
 RUN chmod -R uog+rwx ${NARAYANA_HOME}/ObjectStore/
 RUN mkdir -p ObjectStore/ShadowNoFileLockStore/defaultStore/
 RUN chmod -R uog+rwx ObjectStore/
+RUN mkdir -p ${NARAYANA_HOME}/tx-object-store/ShadowNoFileLockStore/defaultStore/
+RUN chmod -R uog+rwx ${NARAYANA_HOME}/tx-object-store
 
 ENTRYPOINT ["./docker-entrypoint.sh"]
 CMD source $NARAYANA_HOME/jts-jacorb-setup-env.sh; \
