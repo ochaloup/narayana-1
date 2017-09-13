@@ -13,6 +13,8 @@ USER root
 RUN yum install -y ant \
     && yum clean all
 
+RUN chown -R jboss /opt
+
 USER jboss
 
 RUN curl -LOk http://www.jacorb.org/releases/$JACORB_VERSION/jacorb-$JACORB_VERSION-bin.zip \
@@ -20,5 +22,8 @@ RUN curl -LOk http://www.jacorb.org/releases/$JACORB_VERSION/jacorb-$JACORB_VERS
     && rm jacorb-$JACORB_VERSION-bin.zip \
     && mv jacorb-$JACORB_VERSION $JACORB_HOME \
     && ant scripts -f $JACORB_HOME/build.xml
+
+RUN touch $JACORB_HOME/NS_Ref
+RUN chmod -R uog+rwx $JACORB_HOME
 
 CMD ns -Djacorb.log.default.verbosity=3 -DOAPort=$NAME_SERVER_PORT -Djacorb.naming.ior_filename=$JACORB_HOME/NS_Ref

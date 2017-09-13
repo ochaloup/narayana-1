@@ -2,6 +2,8 @@
 
 set -e
 
+JACORB_NAME_SERVER_IP='jacorb-name-server'
+
 [ -z "$JACORB_NAME_SERVER_IP" ] && export JACORB_NAME_SERVER_IP=$(grep 'jacorb-name-server' /etc/hosts | head -n 1 | awk '{print $1}')
 [ -z "$JACORB_NAME_SERVER_URL" ] && export JACORB_NAME_SERVER_URL="corbaloc::${JACORB_NAME_SERVER_IP}:${JACORB_NAME_SERVER_ENV_NAME_SERVER_PORT}/StandardNS/NameServer-POA/_root"
 [ -z "$NARAYANA_OPTS" ] && export NARAYANA_OPTS=""
